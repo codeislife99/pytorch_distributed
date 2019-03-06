@@ -6,7 +6,7 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 import torch.utils.data.distributed
 import horovod.torch as hvd
-
+import time
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
 parser.add_argument('--batch-size', type=int, default=64, metavar='N',
@@ -109,7 +109,7 @@ def train(epoch):
     model.train()
     # Horovod: set epoch to sampler for shuffling.
     print("HVD SIZE = ",hvd.size())
-    import sys;sys.exit();
+    time.sleep(5)
     train_sampler.set_epoch(epoch)
     for batch_idx, (data, target) in enumerate(train_loader):
         if args.cuda:
