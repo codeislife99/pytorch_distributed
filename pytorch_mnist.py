@@ -108,6 +108,7 @@ optimizer = hvd.DistributedOptimizer(optimizer,
 def train(epoch):
     model.train()
     # Horovod: set epoch to sampler for shuffling.
+    import pdb;pdb.set_trace()
     train_sampler.set_epoch(epoch)
     for batch_idx, (data, target) in enumerate(train_loader):
         if args.cuda:
