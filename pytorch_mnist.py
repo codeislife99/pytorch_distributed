@@ -83,6 +83,7 @@ class Net(nn.Module):
         x = self.fc2(x)
         return F.log_softmax(x, dim=1)
 
+
 model = Net()
 
 if args.cuda:
@@ -108,7 +109,7 @@ optimizer = hvd.DistributedOptimizer(optimizer,
 def train(epoch):
     model.train()
     # Horovod: set epoch to sampler for shuffling.
-    print("HVD SIZE = ",hvd.size())
+    print("HVD SIZE = ", hvd.size())
     time.sleep(5)
     train_sampler.set_epoch(epoch)
     for batch_idx, (data, target) in enumerate(train_loader):
